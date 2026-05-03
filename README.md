@@ -39,7 +39,7 @@ pytest tests/test_parking.py -v
 | ID | Bug | Severity |
 |---|---|---|
 | BUG-02 | Fee message shows raw `error` text alongside correct amount | High |
-| BUG-01 | Valid sequential plates (12345678) blocked | High |
+| ~~BUG-01~~ | Sequential plate rejection — reclassified as Open Question (explicit UI rule, not a bug) | — |
 | BUG-07 | Two cars can share the same slot | High |
 | BUG-08 | Empty slot fails silently, no feedback | High |
 | BUG-05 | Login error shown on Dashboard, not on login page | High |

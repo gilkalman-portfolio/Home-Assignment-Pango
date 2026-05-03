@@ -44,6 +44,7 @@ Parkly is a parking lot management system allowing admins to manage active parki
 | Field | Question |
 |---|---|
 | Slot | No documented constraints — currently accepts numbers, letters, or any combination with no limit. Should slot be numeric only? Is there a max length? This needs product clarification before a bug can be filed. |
+| Sequential plates | The app explicitly rejects plates like `12345678` and `87654321` with the message "License plate cannot be a sequential pattern." This is a deliberate, communicated rule — not a silent failure. Whether this rule is correct is a product decision (e.g. fraud prevention). Not filed as a bug; flagged for product clarification: is blocking sequential patterns an intentional requirement? |
 
 ---
 
@@ -64,8 +65,8 @@ Parkly is a parking lot management system allowing admins to manage active parki
 | TC ID | Title | Input | Expected | Actual |
 |---|---|---|---|---|
 | TC-06 | Valid 8-digit plate | `11223344` | Accepted | ✅ Pass |
-| TC-07 | Sequential ascending plate | `12345678` | Accepted (valid plate) | ❌ Fail – blocked as "sequential pattern" |
-| TC-08 | Sequential descending plate | `87654321` | Accepted | ❌ Fail – blocked as "sequential pattern" |
+| TC-07 | Sequential ascending plate | `12345678` | Blocked as "sequential pattern" (see Open Questions) | ⚠️ Blocked — deliberate rule, requirement unclear |
+| TC-08 | Sequential descending plate | `87654321` | Blocked as "sequential pattern" (see Open Questions) | ⚠️ Blocked — deliberate rule, requirement unclear |
 | TC-09 | 7 digits | `1234567` | Rejected | ✅ Pass |
 | TC-10 | 9 digits | `123456789` | Rejected | ✅ Pass |
 | TC-11 | Letters in input | `ABCD1234` | Clear error message | ❌ Fail – letters silently stripped to `1234`, no feedback |
@@ -111,10 +112,10 @@ Parkly is a parking lot management system allowing admins to manage active parki
 
 ## Bugs Found
 
-### BUG-01 – Valid sequential plates incorrectly rejected
-**Severity:** High
-**Description:** Plates like `12345678` and `87654321` are blocked with "License plate cannot be a sequential pattern." Sequential digits are common in real license plates. The validation logic is overly aggressive and based on an incorrect assumption.
-**Impact:** Real vehicles cannot be registered. The system is unusable for a significant category of valid plates.
+### ~~BUG-01~~ – Sequential plate rejection (reclassified as Open Question)
+**Originally filed as:** High bug — plates like `12345678` blocked by "sequential pattern" validation.
+**Reclassified:** The UI communicates this rule explicitly and clearly. This is a deliberate product decision, not a silent or unexpected failure. Whether sequential plates should be valid in the real-world domain is a requirement question, not a code bug.
+**Status:** Moved to Open Questions. Requires product clarification before any bug can be filed.
 
 ---
 
