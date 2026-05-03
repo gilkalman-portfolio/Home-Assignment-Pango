@@ -45,7 +45,7 @@ pytest tests/test_parking.py -v
 | BUG-05 | Login error shown on Dashboard, not on login page | High |
 | BUG-04 | "Forgot password" links to cat image site | High |
 | BUG-03 | Start time shown with microseconds | Medium |
-| BUG-06 | Letters in plate field silently stripped | Medium |
+| ~~BUG-06~~ | Letters in plate field — closed; error message shown ("must be exactly 8 digits") | — |
 | BUG-09 | Active table overflows on mobile (390px) | Medium |
 | BUG-10 | History data violates current validation (server-side gap) | Low-Medium |
 
