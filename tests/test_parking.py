@@ -31,7 +31,7 @@ def end_all_active(page: Page) -> None:
     page.goto(f"{BASE_URL}/")
     while page.get_by_role("button", name="סיים").count() > 0:
         page.get_by_role("button", name="סיים").first.click()
-        page.wait_for_load_state("networkidle")
+        page.goto(f"{BASE_URL}/")
 
 
 # ---------------------------------------------------------------------------
