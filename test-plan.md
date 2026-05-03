@@ -112,13 +112,6 @@ Parkly is a parking lot management system allowing admins to manage active parki
 
 ## Bugs Found
 
-### ~~BUG-01~~ – Sequential plate rejection (reclassified as Open Question)
-**Originally filed as:** High bug — plates like `12345678` blocked by "sequential pattern" validation.
-**Reclassified:** The UI communicates this rule explicitly and clearly. This is a deliberate product decision, not a silent or unexpected failure. Whether sequential plates should be valid in the real-world domain is a requirement question, not a code bug.
-**Status:** Moved to Open Questions. Requires product clarification before any bug can be filed.
-
----
-
 ### BUG-02 – Raw "error" string shown alongside fee message
 **Severity:** High
 **Description:** Ending a parking session shows: `"Parking ended for 99887766. Fee: ₪4.31 (חיוב: error)"`. The fee amount is calculated and displayed correctly in English. However, a secondary Hebrew label (`חיוב`) fails to render and exposes a raw internal `error` string in parentheses.
@@ -158,12 +151,6 @@ Parkly is a parking lot management system allowing admins to manage active parki
 **Severity:** High
 **Description:** Starting parking for two different plates with the same slot number succeeds for both. No slot uniqueness validation exists.
 **Impact:** In a real parking lot, two cars are directed to the same physical space. Data integrity is violated; slot management is unreliable.
-
----
-
-### ~~BUG-08~~ – Empty slot field (closed — not a bug)
-**Originally filed as:** High — empty slot fails silently with no feedback.
-**Closed:** Verified that the browser displays a native HTML5 validation tooltip "זהו שדה חובה." and blocks form submission. Feedback exists; it is not a custom UI alert but is valid and functional. Not a bug.
 
 ---
 
