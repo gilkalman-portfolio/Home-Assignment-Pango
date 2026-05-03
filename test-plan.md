@@ -90,8 +90,8 @@ Parkly is a parking lot management system allowing admins to manage active parki
 | TC-19 | Add user – empty fields | Submit blank form | Validation error | ✅ Pass – HTML5 validation blocks it |
 | TC-20 | Add duplicate username | Username = "admin" | Rejected with error | ✅ Pass – silently blocked |
 | TC-21 | Delete admin user | Click Delete on admin | Blocked | ✅ Pass |
-| TC-22 | Delete non-admin user | Click Delete | User removed | ✅ Pass |
-| TC-23 | No confirmation on delete | Click Delete | Confirm dialog shown | ❌ Fail – instant deletion, no confirmation |
+| TC-22 | Delete non-admin user | Click Delete | User removed | ⚠️ Needs re-verification – see TC-23 |
+| TC-23 | Delete user | Click Delete | User removed | ❌ Fail – deletion does not work; user remains in list after clicking Delete |
 
 ### Module 5: History
 
@@ -170,6 +170,14 @@ Parkly is a parking lot management system allowing admins to manage active parki
 **Severity:** Medium
 **Description:** At 390px viewport width, the 4-column active table (מספר רכב, מספר חניה, שעת התחלה, פעולה) overflows with no responsive layout or horizontal scroll.
 **Impact:** Staff using phones cannot read active sessions or end parking.
+
+---
+
+### BUG-11 – User deletion does not work
+**Severity:** High
+**Description:** Clicking the Delete button on a non-admin user does not remove the user. The user remains in the list after the action with no error message or feedback indicating failure.
+**Impact:** Admins cannot manage users. If a user's access needs to be revoked, there is no working mechanism to do so.
+**Note:** TC-22 was originally marked ✅ Pass — needs re-verification. TC-23 was originally mischaracterized as "no confirmation dialog"; the actual issue is functional breakage.
 
 ---
 

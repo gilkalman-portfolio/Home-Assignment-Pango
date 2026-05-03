@@ -47,6 +47,7 @@ pytest tests/test_parking.py -v
 | BUG-03 | Start time shown with microseconds | Medium |
 | ~~BUG-06~~ | Letters in plate field — closed; error message shown ("must be exactly 8 digits") | — |
 | BUG-09 | Active table overflows on mobile (390px) | Medium |
+| BUG-11 | User deletion does not work — user remains after clicking Delete | High |
 | BUG-10 | History data violates current validation (server-side gap) | Low-Medium |
 
 See `test-plan.md` for full details.
