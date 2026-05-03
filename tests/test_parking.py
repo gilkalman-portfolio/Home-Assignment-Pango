@@ -109,7 +109,7 @@ class TestLicensePlateValidation:
     def test_nine_digit_plate_rejected(self, page: Page):
         """TC-10: 9-digit plate must be rejected."""
         start_parking(page, "123456789", "14")
-        expect(page.get_by_role("alert")).not_to_contain_text("Parking started")
+        expect(page.locator("text=License plate must be exactly 8 digits")).to_be_visible()
 
     @pytest.mark.xfail(reason="BUG-06: letters silently stripped without feedback")
     def test_letters_in_plate_show_clear_error(self, page: Page):

@@ -27,7 +27,7 @@ pytest tests/test_parking.py -v --headed
 | Status | Count | Meaning |
 |---|---|---|
 | ✅ Pass | 8 | Currently working correctly |
-| ⚠️ xfail | 8 | Known bugs — will auto-pass once bugs are fixed |
+| ⚠️ xfail | 9 | Known bugs — will auto-pass once bugs are fixed |
 
 Tests marked `@pytest.mark.xfail` are intentional. They document expected behavior and serve as regression tests — no code change needed when bugs are fixed.
 
