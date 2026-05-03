@@ -76,7 +76,7 @@ Parkly is a parking lot management system allowing admins to manage active parki
 | TC ID | Title | Steps | Expected | Actual |
 |---|---|---|---|---|
 | TC-12 | Start parking – valid | Valid plate + slot → Start Parking | Success alert; row in table | ✅ Pass |
-| TC-13 | End parking fee message | Click סיים | Fee shown cleanly, no "error" text | ❌ Fail – fee amount correct (e.g. ₪4.31) but shows `(חיוב: error)` alongside it; Hebrew label broken |
+| TC-13 | End parking fee message | Click סיים | Fee shown cleanly, no "error" text | ❌ Fail – shows `(חיוב: error)` in billing confirmation; user sees "error" in payment context |
 | TC-14 | Start time format | Start a session | Time shown as YYYY-MM-DD HH:MM | ❌ Fail – microseconds visible: `2026-05-03 09:10:51.733879` |
 | TC-15 | Duplicate plate | Same plate twice | Rejected with clear message | ✅ Pass – "Duplicate parking prevented" |
 | TC-16 | Empty slot | Valid plate, empty slot → Start | Validation error shown | ✅ Pass – HTML5 native validation shows "זהו שדה חובה." tooltip; form blocked |
@@ -112,10 +112,10 @@ Parkly is a parking lot management system allowing admins to manage active parki
 
 ## Bugs Found
 
-### BUG-02 – Raw "error" string shown alongside fee message
-**Severity:** High
-**Description:** Ending a parking session shows: `"Parking ended for 99887766. Fee: ₪4.31 (חיוב: error)"`. The fee amount is calculated and displayed correctly in English. However, a secondary Hebrew label (`חיוב`) fails to render and exposes a raw internal `error` string in parentheses.
-**Impact:** The fee calculation itself works and revenue is trackable. However, users see the word "error" in a billing context, which damages trust and is confusing. The bug is a broken Hebrew localization/translation component, not a billing logic failure. Downgraded from Critical — the core flow is intact.
+### BUG-02 – "error" string exposed in fee message
+**Severity:** Critical
+**Description:** Ending a parking session shows: `"Parking ended for 99887766. Fee: ₪4.31 (חיוב: error)"`. The word `error` is rendered directly in the user-facing billing message.
+**Impact:** In a payment context, seeing "error" — regardless of language or technical cause — tells the user something went wrong with their charge. They may dispute the fee, lose trust in the system, or contact support unnecessarily. A billing confirmation message must never contain the word "error". Root cause is secondary to the fact that this is what the user sees.
 
 ---
 

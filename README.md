@@ -42,7 +42,7 @@ pytest tests/test_parking.py -v
 | BUG-05 | Login error shown on Dashboard, not on login page | High |
 | BUG-07 | Two cars can share the same slot simultaneously | High |
 | BUG-04 | "Forgot password" links to cat image site | High |
-| BUG-02 | Fee message shows raw `(חיוב: error)` text alongside correct amount | High |
+| BUG-02 | "error" string exposed in billing confirmation message | Critical |
 | BUG-06 | Letters in plate field silently stripped with misleading error message | Medium |
 | BUG-03 | Start time shown with microseconds | Medium |
 | BUG-09 | Active parking table overflows on mobile (390px) | Medium |
