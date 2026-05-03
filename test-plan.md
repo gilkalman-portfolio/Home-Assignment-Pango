@@ -173,6 +173,13 @@ Parkly is a parking lot management system allowing admins to manage active parki
 
 ---
 
+### BUG-10 – History data violates current validation rules (server-side gap)
+**Severity:** Low-Medium
+**Description:** History contains plates like `dvdsvd`, `dor123`, `453` — all rejected by current client-side validation. This indicates server-side validation is missing or was added after the data was seeded.
+**Impact:** Client-side-only validation can be bypassed via direct API calls. Data integrity is not guaranteed.
+
+---
+
 ### BUG-11 – User deletion fails with false "parking sessions" error, shown on wrong page
 **Severity:** High
 **Description:** Two compounding issues:
@@ -181,10 +188,3 @@ Parkly is a parking lot management system allowing admins to manage active parki
 
 **Impact:** User management is completely broken — no user can be deleted regardless of their session state. Admins have no way to revoke access. The misleading error message makes diagnosis harder.
 **Note:** TC-22 ("Delete non-admin user → ✅ Pass") needs re-verification — deletion appears to have been broken.
-
----
-
-### BUG-10 – History data violates current validation rules (server-side gap)
-**Severity:** Low-Medium
-**Description:** History contains plates like `dvdsvd`, `dor123`, `453` — all rejected by current client-side validation. This indicates server-side validation is missing or was added after the data was seeded.
-**Impact:** Client-side-only validation can be bypassed via direct API calls. Data integrity is not guaranteed.

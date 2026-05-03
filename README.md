@@ -3,7 +3,7 @@
 ## Repository Structure
 
 ```
-├── test-plan.md          # Exploration findings, 28 test cases, 10 bugs
+├── test-plan.md          # Exploration findings, 28 test cases, bugs found
 ├── ai-reflection.md      # Approach, trade-offs, and AI tool usage
 └── tests/
     ├── README.md         # How to run + reasoning behind choices
@@ -34,7 +34,7 @@ pytest tests/test_parking.py -v
 
 ## Bugs Summary
 
-10 bugs identified across desktop and mobile:
+11 bugs identified and triaged across desktop and mobile (3 closed after verification, 8 active):
 
 | ID | Bug | Severity |
 |---|---|---|

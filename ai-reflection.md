@@ -56,4 +56,6 @@ Standard Python test runner. `autouse` fixtures provided clean setup/teardown wi
 
 ## Most Significant Finding
 
-The most concerning bug isn't any single validation issue — it's that **the fee calculation crashes silently on the server and the raw error surfaces in the UI** (BUG-02). For a parking payment system, the core revenue feature doesn't work correctly. Combined with BUG-10 (history containing data that violates current validation), this strongly suggests server-side validation is absent — meaning client-side validation is the only protection and can be bypassed with a direct HTTP request.
+The most significant finding is a pattern, not a single bug: **error messages consistently appear on the wrong screen**. Both failed login (BUG-05) and failed user deletion (BUG-11) surface their errors on the Dashboard rather than the page where the action occurred. This suggests a systemic issue in how the app handles server responses and redirects — not isolated mistakes.
+
+The second notable finding is BUG-11: user deletion returns `"Cannot delete user with parking sessions."` even when no sessions exist. Combined with BUG-10 (history containing plates that violate current client-side validation), this strongly suggests server-side logic operates independently of the UI's validation rules and may be unreliable. Client-side validation can be bypassed with a direct HTTP request, and the server appears to have its own — incorrect — state assumptions.
