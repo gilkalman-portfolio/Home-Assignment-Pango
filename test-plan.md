@@ -58,7 +58,7 @@ Parkly is a parking lot management system allowing admins to manage active parki
 | TC-02 | Invalid credentials | Enter admin/wrongpass, click כניסה | Error shown on login page | ❌ Fail – error appears on Dashboard after redirect, not on login page |
 | TC-03 | Access protected route without login | Navigate to /users directly | Redirect to login | ✅ Pass – redirects to /login (URL may or may not include ?next param) |
 | TC-04 | Forgot password link | Click "אפשר לאפס כאן" | Password reset flow | ❌ Fail – redirects to https://cataas.com/cat |
-| TC-05 | Empty credentials | Submit blank form | Validation error | ⚠️ Needs verification – login form may have HTML5 required validation (same as TC-16); not confirmed |
+| TC-05 | Empty credentials | Submit blank form | Validation error shown on login page | ❌ Fail – login form has no HTML5 required validation; empty submission redirects to Dashboard, consistent with BUG-05 |
 
 ### Module 2: License Plate Validation
 
@@ -90,8 +90,7 @@ Parkly is a parking lot management system allowing admins to manage active parki
 | TC-19 | Add user – empty fields | Submit blank form | Validation error | ✅ Pass – HTML5 validation blocks it |
 | TC-20 | Add duplicate username | Username = "admin" | Rejected with error | ✅ Pass – silently blocked |
 | TC-21 | Delete admin user | Click Delete on admin | Blocked | ✅ Pass |
-| TC-22 | Delete non-admin user | Click Delete | User removed | ❌ Fail – see TC-23 |
-| TC-23 | Delete user | Click Delete | User removed, or clear error on Users page | ❌ Fail – server returns "Cannot delete user with parking sessions." even with no sessions; error shown on Dashboard, not Users page |
+| TC-22 | Delete non-admin user | Click Delete on non-admin user | User removed from list | ❌ Fail – server returns "Cannot delete user with parking sessions." even when no sessions exist; error shown on Dashboard instead of Users page (BUG-11) |
 
 ### Module 5: History
 
@@ -175,4 +174,4 @@ Parkly is a parking lot management system allowing admins to manage active parki
 2. **Error displayed on wrong page** — the error message appears on the Dashboard, not on the Users page where the action was taken. Same routing pattern as BUG-05 (login error on wrong screen).
 
 **Impact:** User management is completely broken — no user can be deleted regardless of their session state. Admins have no way to revoke access. The misleading error message makes diagnosis harder.
-**Note:** TC-22 ("Delete non-admin user → ✅ Pass") needs re-verification — deletion appears to have been broken.
+**Note:** TC-22 was originally marked ✅ Pass and later re-verified as ❌ Fail.

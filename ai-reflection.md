@@ -2,7 +2,7 @@
 
 ## Overall Approach & Key Decisions
 
-I started with exploration before planning. Rather than writing test cases from assumptions, I ran the application and interacted with every screen using Playwright — filling forms, clicking buttons, testing boundaries, and reading the actual UI responses. This revealed bugs that only appear through real usage: the fee message showing raw "error" text, the slot uniqueness gap, the silent failure on empty slot, and the login error appearing on the wrong screen.
+I started with exploration before planning. Rather than writing test cases from assumptions, I ran the application and interacted with every screen using Playwright — filling forms, clicking buttons, testing boundaries, and reading the actual UI responses. This revealed bugs that only appear through real usage: the fee message showing raw "error" text, the slot uniqueness gap, and the login error appearing on the wrong screen — along with behaviors that looked like bugs but turned out to be deliberate (HTML5 validation on empty slot, explicit sequential plate rejection).
 
 I then structured the test plan around risk. The parking lifecycle is where money changes hands — I went deepest there. Authentication is a security baseline. Mobile was a deliberate addition because parking management is often done on-site with a phone, not a desktop.
 

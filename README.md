@@ -38,13 +38,13 @@ pytest tests/test_parking.py -v
 
 | ID | Bug | Severity |
 |---|---|---|
-| BUG-11 | User deletion fails — false "parking sessions" error shown on Dashboard | High |
+| BUG-02 | "error" string exposed in billing confirmation message | Critical |
 | BUG-05 | Login error shown on Dashboard, not on login page | High |
 | BUG-07 | Two cars can share the same slot simultaneously | High |
 | BUG-04 | "Forgot password" links to cat image site | High |
-| BUG-02 | "error" string exposed in billing confirmation message | Critical |
-| BUG-06 | Letters in plate field silently stripped with misleading error message | Medium |
+| BUG-11 | User deletion fails — false "parking sessions" error shown on Dashboard | High |
 | BUG-03 | Start time shown with microseconds | Medium |
+| BUG-06 | Letters in plate field silently stripped with misleading error message | Medium |
 | BUG-09 | Active parking table overflows on mobile (390px) | Medium |
 | BUG-10 | History data violates current validation rules (server-side gap) | Low-Medium |
 

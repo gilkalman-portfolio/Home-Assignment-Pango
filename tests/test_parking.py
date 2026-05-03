@@ -72,11 +72,7 @@ class TestAuthentication:
         page.get_by_role("textbox", name="סיסמה").fill("wrongpassword")
         page.get_by_role("button", name="כניסה").click()
         expect(page).to_have_url(re.compile(r"/login"))
-        error = (
-            page.locator(".alert-danger")
-            .or_(page.locator(".error"))
-            .or_(page.get_by_text("שגיאה"))
-        )
+        error = page.get_by_role("alert").or_(page.get_by_text("שגיאה"))
         expect(error).to_be_visible()
 
     def test_protected_route_redirects_unauthenticated(self, page: Page):

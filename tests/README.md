@@ -48,7 +48,7 @@ Tests marked `@pytest.mark.xfail` are intentional. They document expected behavi
 | Same slot, two cars → should be rejected (BUG-07) | ⚠️ xfail |
 
 ### Scenario 2 – License Plate Validation
-**Why:** Multiple bugs in validation logic affect legitimate input. These tests create a regression suite for when the logic is corrected.
+**Why:** Validation is the gate for all parking operations. Tests cover boundary values (7, 8, 9 digits), character types (letters), and deliberate rules (sequential patterns) — documenting both bugs and confirmed behavior.
 
 | Test | Status |
 |---|---|
