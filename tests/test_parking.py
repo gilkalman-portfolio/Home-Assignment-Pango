@@ -134,9 +134,12 @@ class TestParkingLifecycle:
         expect(page.get_by_role("alert")).to_contain_text(f"Parking started for {self.PLATE}")
         expect(page.get_by_role("row", name=self.PLATE)).to_be_visible()
 
-    @pytest.mark.xfail(reason="BUG-02: fee message contains raw 'error' text")
+    @pytest.mark.xfail(reason="BUG-02: Hebrew fee label broken — shows '(חיוב: error)' alongside correct amount")
     def test_end_parking_fee_message_has_no_error_string(self, page: Page):
-        """TC-13: Fee message must not contain the word 'error'."""
+        """TC-13: Fee message must show amount cleanly with no 'error' text.
+        Note: fee calculation itself works (e.g. ₪4.31 shown correctly).
+        The bug is a broken Hebrew localization label, not a billing logic failure.
+        """
         start_parking(page, self.PLATE, self.SLOT)
         page.get_by_role("button", name="סיים").click()
         alert = page.get_by_role("alert")

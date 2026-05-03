@@ -38,7 +38,7 @@ pytest tests/test_parking.py -v
 
 | ID | Bug | Severity |
 |---|---|---|
-| BUG-02 | Fee message shows raw `error` text | Critical |
+| BUG-02 | Fee message shows raw `error` text alongside correct amount | High |
 | BUG-01 | Valid sequential plates (12345678) blocked | High |
 | BUG-07 | Two cars can share the same slot | High |
 | BUG-08 | Empty slot fails silently, no feedback | High |
