@@ -58,7 +58,7 @@ Parkly is a parking lot management system allowing admins to manage active parki
 | TC-02 | Invalid credentials | Enter admin/wrongpass, click כניסה | Error shown on login page | ❌ Fail – error appears on Dashboard after redirect, not on login page |
 | TC-03 | Access protected route without login | Navigate to /users directly | Redirect to login | ✅ Pass – redirects to /login (URL may or may not include ?next param) |
 | TC-04 | Forgot password link | Click "אפשר לאפס כאן" | Password reset flow | ❌ Fail – redirects to https://cataas.com/cat |
-| TC-05 | Empty credentials | Submit blank form | Validation error | ❌ Fail – no error shown |
+| TC-05 | Empty credentials | Submit blank form | Validation error | ⚠️ Needs verification – login form may have HTML5 required validation (same as TC-16); not confirmed |
 
 ### Module 2: License Plate Validation
 
@@ -69,7 +69,7 @@ Parkly is a parking lot management system allowing admins to manage active parki
 | TC-08 | Sequential descending plate | `87654321` | Blocked as "sequential pattern" (see Open Questions) | ⚠️ Blocked — deliberate rule, requirement unclear |
 | TC-09 | 7 digits | `1234567` | Rejected | ✅ Pass |
 | TC-10 | 9 digits | `123456789` | Rejected | ✅ Pass |
-| TC-11 | Letters in input | `ABCD1234` | Clear error message | ✅ Pass – letters stripped and "License plate must be exactly 8 digits" shown; message is generic but feedback exists |
+| TC-11 | Letters in input | `ABCD1234` | Clear error message explaining letters are invalid | ❌ Fail – letters silently stripped, message says "must be exactly 8 digits" (not "letters not allowed"); user doesn't understand why input changed |
 
 ### Module 3: Parking Lifecycle
 
@@ -147,9 +147,10 @@ Parkly is a parking lot management system allowing admins to manage active parki
 
 ---
 
-### ~~BUG-06~~ – Letters in plate field (closed — not a bug)
-**Originally filed as:** Medium — letters silently stripped to `1234` with no feedback.
-**Closed:** Verified that letters cannot be entered in the field at all, and the message "License plate must be exactly 8 digits" is shown. Feedback exists. The message is generic rather than "letters not allowed", but this is a minor UX observation, not a bug.
+### BUG-06 – Letters in plate field silently stripped with misleading error
+**Severity:** Medium
+**Description:** Typing `ABCD1234` causes letters to be stripped silently; the field shows `1234`. The error message shown is "License plate must be exactly 8 digits" — which describes a digit count problem, not a letters problem. The user does not understand why their input changed or that letters are disallowed.
+**Impact:** Confusing UX — the error message does not match the actual cause of rejection. A user who typed 8 characters is told the problem is the count, not the content.
 
 ---
 

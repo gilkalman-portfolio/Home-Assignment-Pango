@@ -26,8 +26,8 @@ pytest tests/test_parking.py -v --headed
 
 | Status | Count | Meaning |
 |---|---|---|
-| ✅ Pass | 12 | Currently working correctly |
-| ⚠️ xfail | 5 | Known bugs — will auto-pass once bugs are fixed |
+| ✅ Pass | 11 | Currently working correctly |
+| ⚠️ xfail | 6 | Known bugs — will auto-pass once bugs are fixed |
 
 Tests marked `@pytest.mark.xfail` are intentional. They document expected behavior and serve as regression tests — no code change needed when bugs are fixed.
 
@@ -56,7 +56,7 @@ Tests marked `@pytest.mark.xfail` are intentional. They document expected behavi
 | Sequential ascending/descending → blocked with explicit message (open product question) | ✅ passes |
 | 7-digit plate → rejected | ✅ passes |
 | 9-digit plate → rejected | ✅ passes |
-| Letters in plate → blocked, "must be exactly 8 digits" shown (not a bug) | ✅ passes |
+| Letters in plate → stripped silently, error message misleading (BUG-06) | ⚠️ xfail |
 
 ### Scenario 3 – Authentication
 **Why:** Security baseline — access control must always work.

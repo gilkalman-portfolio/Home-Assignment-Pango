@@ -116,14 +116,14 @@ class TestLicensePlateValidation:
         start_parking(page, "123456789", "14")
         expect(page.locator("text=License plate must be exactly 8 digits")).to_be_visible()
 
-    def test_letters_in_plate_blocked_with_message(self, page: Page):
-        """TC-11: Letters cannot be entered in the plate field.
-        The field strips non-digit input and shows 'License plate must be exactly 8 digits'.
-        The message is generic (not 'letters not allowed') but feedback is present.
-        Original BUG-06 'silent strip, no feedback' was incorrect — message does appear.
+    @pytest.mark.xfail(reason="BUG-06: letters stripped silently; error says 'must be 8 digits' not 'letters not allowed'")
+    def test_letters_in_plate_show_clear_error(self, page: Page):
+        """TC-11: Typing ABCD1234 should produce a message explaining letters are invalid.
+        Currently letters are stripped and error says 'must be exactly 8 digits' —
+        misleading because the user typed 8 characters.
         """
         start_parking(page, "ABCD1234", "15")
-        expect(page.locator("text=License plate must be exactly 8 digits")).to_be_visible()
+        expect(page.locator("text=digits only").or_(page.locator("text=letters are not allowed"))).to_be_visible()
 
 
 # ---------------------------------------------------------------------------
