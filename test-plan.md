@@ -90,8 +90,8 @@ Parkly is a parking lot management system allowing admins to manage active parki
 | TC-19 | Add user – empty fields | Submit blank form | Validation error | ✅ Pass – HTML5 validation blocks it |
 | TC-20 | Add duplicate username | Username = "admin" | Rejected with error | ✅ Pass – silently blocked |
 | TC-21 | Delete admin user | Click Delete on admin | Blocked | ✅ Pass |
-| TC-22 | Delete non-admin user | Click Delete | User removed | ⚠️ Needs re-verification – see TC-23 |
-| TC-23 | Delete user | Click Delete | User removed | ❌ Fail – deletion does not work; user remains in list after clicking Delete |
+| TC-22 | Delete non-admin user | Click Delete | User removed | ❌ Fail – see TC-23 |
+| TC-23 | Delete user | Click Delete | User removed, or clear error on Users page | ❌ Fail – server returns "Cannot delete user with parking sessions." even with no sessions; error shown on Dashboard, not Users page |
 
 ### Module 5: History
 
@@ -173,11 +173,14 @@ Parkly is a parking lot management system allowing admins to manage active parki
 
 ---
 
-### BUG-11 – User deletion does not work
+### BUG-11 – User deletion fails with false "parking sessions" error, shown on wrong page
 **Severity:** High
-**Description:** Clicking the Delete button on a non-admin user does not remove the user. The user remains in the list after the action with no error message or feedback indicating failure.
-**Impact:** Admins cannot manage users. If a user's access needs to be revoked, there is no working mechanism to do so.
-**Note:** TC-22 was originally marked ✅ Pass — needs re-verification. TC-23 was originally mischaracterized as "no confirmation dialog"; the actual issue is functional breakage.
+**Description:** Two compounding issues:
+1. **False validation error** — clicking Delete on any non-admin user returns `"Cannot delete user with parking sessions."` even when no parking sessions exist for that user. The server-side check is incorrect or operates on the wrong data.
+2. **Error displayed on wrong page** — the error message appears on the Dashboard, not on the Users page where the action was taken. Same routing pattern as BUG-05 (login error on wrong screen).
+
+**Impact:** User management is completely broken — no user can be deleted regardless of their session state. Admins have no way to revoke access. The misleading error message makes diagnosis harder.
+**Note:** TC-22 ("Delete non-admin user → ✅ Pass") needs re-verification — deletion appears to have been broken.
 
 ---
 
