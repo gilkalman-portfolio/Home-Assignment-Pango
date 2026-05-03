@@ -112,8 +112,12 @@ class TestLicensePlateValidation:
         start_parking(page, "1234567", "13")
         expect(page.get_by_text("License plate must be exactly 8 digits")).to_be_visible()
 
+    @pytest.mark.xfail(reason="BUG-06b: 9-digit input silently truncated to 8 chars; '123456789' becomes '12345678' (sequential) so wrong error is shown")
     def test_nine_digit_plate_rejected(self, page: Page):
-        """TC-10: 9-digit plate must be rejected."""
+        """TC-10: 9-digit plate must be rejected with 'exactly 8 digits' message.
+        Currently the input field silently truncates to 8 chars before submission,
+        so '123456789' becomes '12345678' and the sequential-pattern error appears instead.
+        """
         start_parking(page, "123456789", "14")
         expect(page.get_by_text("License plate must be exactly 8 digits")).to_be_visible()
 

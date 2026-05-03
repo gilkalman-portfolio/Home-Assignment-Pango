@@ -26,8 +26,8 @@ pytest tests/test_parking.py -v --headed
 
 | Status | Count | Meaning |
 |---|---|---|
-| ✅ Pass | 11 | Currently working correctly |
-| ⚠️ xfail | 6 | Known bugs — will auto-pass once bugs are fixed |
+| ✅ Pass | 10 | Currently working correctly |
+| ⚠️ xfail | 7 | Known bugs — will auto-pass once bugs are fixed |
 
 Tests marked `@pytest.mark.xfail` are intentional. They document expected behavior and serve as regression tests — no code change needed when bugs are fixed.
 
@@ -55,7 +55,7 @@ Tests marked `@pytest.mark.xfail` are intentional. They document expected behavi
 | Valid non-sequential plate → accepted | ✅ passes |
 | Sequential ascending/descending → blocked with explicit message (open product question) | ✅ passes |
 | 7-digit plate → rejected | ✅ passes |
-| 9-digit plate → rejected | ✅ passes |
+| 9-digit plate → silently truncated to 8, wrong error shown (BUG-06) | ⚠️ xfail |
 | Letters in plate → stripped silently, error message misleading (BUG-06) | ⚠️ xfail |
 
 ### Scenario 3 – Authentication

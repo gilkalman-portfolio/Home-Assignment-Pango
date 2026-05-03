@@ -68,7 +68,7 @@ Parkly is a parking lot management system allowing admins to manage active parki
 | TC-07 | Sequential ascending plate | `12345678` | Blocked as "sequential pattern" (see Open Questions) | ⚠️ Blocked — deliberate rule, requirement unclear |
 | TC-08 | Sequential descending plate | `87654321` | Blocked as "sequential pattern" (see Open Questions) | ⚠️ Blocked — deliberate rule, requirement unclear |
 | TC-09 | 7 digits | `1234567` | Rejected | ✅ Pass |
-| TC-10 | 9 digits | `123456789` | Rejected | ✅ Pass |
+| TC-10 | 9 digits | `123456789` | Rejected with "exactly 8 digits" message | ❌ Fail – input silently truncated to 8 chars; `12345678` is sequential so wrong error shown (see BUG-06) |
 | TC-11 | Letters in input | `ABCD1234` | Clear error message explaining letters are invalid | ❌ Fail – letters silently stripped, message says "must be exactly 8 digits" (not "letters not allowed"); user doesn't understand why input changed |
 
 ### Module 3: Parking Lifecycle
