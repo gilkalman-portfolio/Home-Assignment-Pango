@@ -26,8 +26,8 @@ pytest tests/test_parking.py -v --headed
 
 | Status | Count | Meaning |
 |---|---|---|
-| ✅ Pass | 10 | Currently working correctly |
-| ⚠️ xfail | 7 | Known bugs — will auto-pass once bugs are fixed |
+| ✅ Pass | 11 | Currently working correctly |
+| ⚠️ xfail | 6 | Known bugs — will auto-pass once bugs are fixed |
 
 Tests marked `@pytest.mark.xfail` are intentional. They document expected behavior and serve as regression tests — no code change needed when bugs are fixed.
 
@@ -44,7 +44,7 @@ Tests marked `@pytest.mark.xfail` are intentional. They document expected behavi
 | End parking → fee message must not contain "error" (BUG-02) | ⚠️ xfail |
 | Start time format → no microseconds (BUG-03) | ⚠️ xfail |
 | Duplicate plate → rejected correctly | ✅ passes |
-| Empty slot → should show validation error (BUG-08) | ⚠️ xfail |
+| Empty slot → blocked by HTML5 native validation (not a bug) | ✅ passes |
 | Same slot, two cars → should be rejected (BUG-07) | ⚠️ xfail |
 
 ### Scenario 2 – License Plate Validation

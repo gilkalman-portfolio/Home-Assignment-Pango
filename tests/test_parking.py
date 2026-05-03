@@ -167,14 +167,17 @@ class TestParkingLifecycle:
         start_parking(page, self.PLATE, "88")
         expect(page.get_by_role("alert")).to_contain_text("Duplicate parking prevented")
 
-    @pytest.mark.xfail(reason="BUG-08: empty slot fails silently with no feedback")
-    def test_empty_slot_shows_validation_error(self, page: Page):
-        """TC-16: Empty slot must show a validation error, not fail silently."""
+    def test_empty_slot_blocked_by_html5_validation(self, page: Page):
+        """TC-16: Empty slot is blocked by HTML5 required validation ('זהו שדה חובה.').
+        Not a custom alert — the browser prevents submission natively.
+        """
         page.get_by_role("textbox", name="Car Plate").fill(self.PLATE)
         page.get_by_role("textbox", name="Slot").fill("")
         page.get_by_role("button", name="Start Parking").click()
-        expect(page.get_by_role("alert")).to_be_visible()
-        expect(page.get_by_role("alert")).not_to_contain_text("Parking started")
+        slot_field = page.get_by_role("textbox", name="Slot")
+        is_valid = slot_field.evaluate("el => el.validity.valid")
+        assert not is_valid, "Slot field should be invalid when empty"
+        expect(page.get_by_role("alert")).not_to_be_visible()
 
     @pytest.mark.xfail(reason="BUG-07: same slot accepted for two different cars")
     def test_same_slot_two_cars_rejected(self, page: Page):

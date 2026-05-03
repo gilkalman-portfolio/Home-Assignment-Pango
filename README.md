@@ -41,7 +41,7 @@ pytest tests/test_parking.py -v
 | BUG-02 | Fee message shows raw `error` text alongside correct amount | High |
 | ~~BUG-01~~ | Sequential plate rejection — reclassified as Open Question (explicit UI rule, not a bug) | — |
 | BUG-07 | Two cars can share the same slot | High |
-| BUG-08 | Empty slot fails silently, no feedback | High |
+| ~~BUG-08~~ | Empty slot — closed; HTML5 native validation blocks form with "זהו שדה חובה." | — |
 | BUG-05 | Login error shown on Dashboard, not on login page | High |
 | BUG-04 | "Forgot password" links to cat image site | High |
 | BUG-03 | Start time shown with microseconds | Medium |

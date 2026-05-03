@@ -79,7 +79,7 @@ Parkly is a parking lot management system allowing admins to manage active parki
 | TC-13 | End parking fee message | Click סיים | Fee shown cleanly, no "error" text | ❌ Fail – fee amount correct (e.g. ₪4.31) but shows `(חיוב: error)` alongside it; Hebrew label broken |
 | TC-14 | Start time format | Start a session | Time shown as YYYY-MM-DD HH:MM | ❌ Fail – microseconds visible: `2026-05-03 09:10:51.733879` |
 | TC-15 | Duplicate plate | Same plate twice | Rejected with clear message | ✅ Pass – "Duplicate parking prevented" |
-| TC-16 | Empty slot | Valid plate, empty slot → Start | Validation error shown | ❌ Fail – fails silently, no feedback |
+| TC-16 | Empty slot | Valid plate, empty slot → Start | Validation error shown | ✅ Pass – HTML5 native validation shows "זהו שדה חובה." tooltip; form blocked |
 | TC-17 | Same slot for two cars | Two plates, same slot number | Rejected – slot occupied | ❌ Fail – both accepted |
 
 ### Module 4: User Management
@@ -161,10 +161,9 @@ Parkly is a parking lot management system allowing admins to manage active parki
 
 ---
 
-### BUG-08 – Empty slot field fails silently
-**Severity:** High
-**Description:** Submitting Start Parking with an empty Slot field produces no alert and no new row. The failure is completely invisible to the user.
-**Impact:** User cannot tell if parking started. Cars may go untracked.
+### ~~BUG-08~~ – Empty slot field (closed — not a bug)
+**Originally filed as:** High — empty slot fails silently with no feedback.
+**Closed:** Verified that the browser displays a native HTML5 validation tooltip "זהו שדה חובה." and blocks form submission. Feedback exists; it is not a custom UI alert but is valid and functional. Not a bug.
 
 ---
 
