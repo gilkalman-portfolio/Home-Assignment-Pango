@@ -79,7 +79,7 @@ Tests marked `@pytest.mark.xfail` are intentional. They document expected behavi
 
 ## Stability Choices
 
-- `get_by_role` selectors throughout — resistant to CSS/class changes, based on accessible semantics
+- `get_by_role` / `get_by_text` selectors throughout — resistant to CSS/class changes, based on accessible semantics
 - `autouse` fixture handles login and teardown (ends all active sessions after each test)
-- `page.wait_for_url()` after login instead of arbitrary `sleep`
+- `mobile_page` fixture guarantees viewport reset even if a test fails midway
 - `xfail` markers keep known-failing tests visible in CI output without polluting pass/fail counts
