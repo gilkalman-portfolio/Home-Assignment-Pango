@@ -213,7 +213,6 @@ class TestMobileResponsiveness:
         expect(mobile_page.get_by_role("textbox", name="סיסמה")).to_be_visible()
         expect(mobile_page.get_by_role("button", name="כניסה")).to_be_visible()
 
-    @pytest.mark.xfail(reason="BUG-09: active table overflows at 390px viewport")
     def test_active_table_no_overflow_on_mobile(self, mobile_page: Page):
         """TC-28: Active parking table must not overflow at 390px width."""
         start_parking(mobile_page, "33445566", "5")

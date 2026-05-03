@@ -26,8 +26,8 @@ pytest tests/test_parking.py -v --headed
 
 | Status | Count | Meaning |
 |---|---|---|
-| ✅ Pass | 10 | Currently working correctly |
-| ⚠️ xfail | 7 | Known bugs — will auto-pass once bugs are fixed |
+| ✅ Pass | 11 | Currently working correctly |
+| ⚠️ xfail | 6 | Known bugs — will auto-pass once bugs are fixed |
 
 Tests marked `@pytest.mark.xfail` are intentional. They document expected behavior and serve as regression tests — no code change needed when bugs are fixed.
 
@@ -73,7 +73,7 @@ Tests marked `@pytest.mark.xfail` are intentional. They document expected behavi
 | Test | Status |
 |---|---|
 | Login page functional at 390px | ✅ passes |
-| Active table no overflow at 390px (BUG-09) | ⚠️ xfail |
+| Active table no overflow at 390px | ✅ passes |
 
 ---
 

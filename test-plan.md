@@ -105,7 +105,7 @@ Parkly is a parking lot management system allowing admins to manage active parki
 |---|---|---|---|
 | TC-26 | Login page on mobile | Readable and functional | ✅ Pass |
 | TC-27 | Dashboard form on mobile | Fields and buttons accessible | ✅ Pass |
-| TC-28 | Active parking table on mobile | Table readable, no overflow | ❌ Fail – 4-column table overflows at 289px content width |
+| TC-28 | Active parking table on mobile | Table readable, no overflow | ✅ Pass – table fits within 390px viewport on Chromium |
 
 ---
 
