@@ -3,7 +3,7 @@
 ## Repository Structure
 
 ```
-├── test-plan.md          # Exploration findings, 28 test cases, bugs found
+├── test-plan.md          # Exploration findings, 27 test cases, bugs found
 ├── ai-reflection.md      # Approach, trade-offs, and AI tool usage
 └── tests/
     ├── README.md         # How to run + reasoning behind choices
